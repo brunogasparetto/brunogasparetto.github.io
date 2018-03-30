@@ -25,7 +25,7 @@ github_username:  brunogasparetto
 # Build settings
 repository: brunogasparetto/brunogasparetto.github.io
 markdown: kramdown
-theme: minima
+permalink: /:title/
 plugins:
   - jekyll-feed
 

@@ -28,6 +28,13 @@ markdown: kramdown
 permalink: /:title/
 plugins:
   - jekyll-feed
+sass:
+    style: compressed
+compress_html:
+  clippings: all
+  comments: all
+  endings: []
+  profile: false
 
 # Exclude from processing.
 # The following items will not be processed, by default. Create a custom list

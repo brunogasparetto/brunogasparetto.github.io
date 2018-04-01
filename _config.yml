@@ -32,6 +32,8 @@ plugins:
   - jekyll-feed
   - jekyll-sitemap
   - jekyll-seo-tag
+  - jekyll-relative-links
+  - jekyll-paginate
 sass:
     style: compressed
 compress_html:

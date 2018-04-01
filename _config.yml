@@ -14,11 +14,12 @@
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
 title: Histórias do Bruno
+description: Algumas experiências de desenvolvimento e talvez de outras áreas.
+url: "https://brunogasparetto.github.io"
+baseurl: ""
+lang: pt_BR
 author: Bruno Gasparetto
 email: brunogasparetto@gmail.com
-description: Algumas experiências de desenvolvimento e talvez de outras áreas.
-baseurl: "" # the subpath of your site, e.g. /blog
-url: "https://brunogasparetto.github.io" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: brunoguntz
 github_username:  brunogasparetto
 disqus_username: https-brunogasparetto-github-io
@@ -29,6 +30,8 @@ markdown: kramdown
 permalink: /:title/
 plugins:
   - jekyll-feed
+  - jekyll-sitemap
+  - jekyll-seo-tag
 sass:
     style: compressed
 compress_html:

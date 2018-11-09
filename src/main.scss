@@ -1,0 +1,32 @@
+@import "bootstrap";
+
+body {
+    padding-top: 4.5rem;
+}
+
+.h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
+    margin-top: 1.5rem;
+}
+
+blockquote {
+    color: #828282;
+    border-left: 4px solid #e8e8e8;
+    padding-left: 15px;
+    font-size: 18px;
+    letter-spacing: -1px;
+    font-style: italic;
+}
+
+.list-posts {
+    list-style: none;
+    padding: 0;
+
+    li {
+        margin-bottom: 2rem;
+    }
+}
+
+.post-meta {
+    color: #828282;
+    font-size: 0.8rem;
+}

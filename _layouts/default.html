@@ -2,22 +2,47 @@
 layout: compress
 ---
 <!DOCTYPE html>
-<html lang="{{ page.lang | default: site.lang | default: "en" }}">
-
-  {%- include head.html -%}
+<html lang="{{ page.lang | default: site.lang }}">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    {%- seo -%}
+    <link href="{{ '/assets/css/main.css' | relative_url }}" rel="stylesheet">
+    {%- feed_meta -%}
+    {%- if jekyll.environment == 'production' and site.google_analytics -%}
+      {%- include google-analytics.html -%}
+    {%- endif -%}
+  </head>
 
   <body>
 
-    {%- include header.html -%}
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+      <a class="navbar-brand" href="{{ '/' | relative_url }}">{{ site.title | escape }}</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Alternar Navegação">
+        <span class="navbar-toggler-icon"></span>
+      </button>
 
-    <main class="page-content" aria-label="Content">
-      <div class="wrapper">
-        {{ content }}
+      <div class="collapse navbar-collapse" id="navbarCollapse">
+        <ul class="navbar-nav ml-auto">
+          {%- for sitePage in site.pages -%}
+            {%- if sitePage.title -%}
+            <li class="nav-item {%- if sitePage.url == page.url -%} active {%- endif -%}">
+                <a class="nav-link" href="{{ sitePage.url | relative_url }}">{{ sitePage.title }}</a>
+            </li>
+            {%- endif -%}
+          {%- endfor -%}
+          <li class="nav-item">
+            <a class="nav-link" href="{{ 'feed.xml' | relative_url }}">RSS</a>
+          </li>
+        </ul>
       </div>
+    </nav>
+
+    <main role="main" class="container">
+		  {{ content }}
     </main>
 
-    {%- include footer.html -%}
-
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="{{ '/assets/js/bootstrap.js' | relative_url }}"></script>
   </body>
-
 </html>

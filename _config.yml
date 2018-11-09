@@ -26,17 +26,19 @@ disqus_username: https-brunogasparetto-github-io
 google_analytics: UA-116672292-1
 
 # Build settings
+permalink: /:title/
 repository: brunogasparetto/brunogasparetto.github.io
 markdown: kramdown
-permalink: /:title/
+kramdown:
+  input: GFM
 plugins:
-  - jekyll-feed
-  - jekyll-sitemap
-  - jekyll-seo-tag
-  - jekyll-relative-links
-  - jekyll-paginate
+- jekyll-feed
+- jekyll-sitemap
+- jekyll-seo-tag
+- jekyll-relative-links
+- jekyll-paginate
 sass:
-    style: compressed
+  style: compressed
 compress_html:
   clippings: all
   comments: all
@@ -46,11 +48,12 @@ compress_html:
 # Exclude from processing.
 # The following items will not be processed, by default. Create a custom list
 # to override the default setting.
-# exclude:
-#   - Gemfile
-#   - Gemfile.lock
-#   - node_modules
-#   - vendor/bundle/
-#   - vendor/cache/
-#   - vendor/gems/
-#   - vendor/ruby/
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - src
+  - .gitignore
+  - gulpfile.js
+  - package.json
+  - package-lock.json

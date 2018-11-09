@@ -136,7 +136,7 @@ $config->set('CSS.AllowedProperties', $CssPropriedadesPermitidas);
 
 // Classes permitidas nas tags
 $config->set('Attr.AllowedClasses', $classesPermitidas);
-'
+
 // Elementos que não podem ser utilizadas
 $config->set('HTML.ForbiddenElements', $elementosProibidos);
 

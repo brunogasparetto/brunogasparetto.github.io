@@ -6,7 +6,7 @@ var postcss = require('gulp-postcss');
 var autoprefixer = require('autoprefixer');
 var cssnano = require('cssnano');
 
-//sass.compiler = require('node-sass');
+sass.compiler = require('node-sass');
 
 gulp.task('css', function () {
     var plugins = [
@@ -36,8 +36,8 @@ gulp.task('js', function () {
         .pipe(gulp.dest('./assets/js'));
 });
 
-gulp.task('default', ['css', 'js']);
+gulp.task('default', gulp.parallel('css', 'js'));
 
 gulp.task('watch', function () {
-    gulp.watch('./src/**/*.+(scss|css)', ['css']);
+    gulp.watch('./src/**/*.+(scss|css)', gulp.series('css'));
 });

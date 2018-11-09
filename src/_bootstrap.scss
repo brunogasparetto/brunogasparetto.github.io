@@ -55,7 +55,12 @@ $container-max-widths: (
   xl: 870px
 );
 
-// ../node_modules/bootstrap/scss/
+$container-max-widths: (
+  sm: 540px,
+  md: 720px,
+  lg: 870px,
+  xl: 960px
+);
 
 @import "../node_modules/bootstrap/scss/variables";
 @import "../node_modules/bootstrap/scss/mixins";

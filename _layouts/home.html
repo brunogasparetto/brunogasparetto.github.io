@@ -2,20 +2,14 @@
 layout: default
 ---
 
-<h1>{{ site.title | escape }}</h1>
-
-<p>{{ site.description | escape }}</p>
-
-<h2>Posts</h2>
-
 <ul class="list-posts">
 {%- for post in site.posts -%}
   <li>
-    <span class="post-meta">{%- include date.html date=post.date -%}</span>
     <h3>
       <a href="{{ post.url | absolute_url }}">{{ post.title | escape }}</a>
     </h3>
     <p>{{ post.excerpt }}</p>
+    <span class="post-meta">{%- include date.html date=post.date -%}</span>
   </li>
 {%- endfor -%}
 </ul>

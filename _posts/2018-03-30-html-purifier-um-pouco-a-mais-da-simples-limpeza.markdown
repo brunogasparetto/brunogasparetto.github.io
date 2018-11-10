@@ -13,7 +13,7 @@ tags:
 ---
 
 Tratar entrada de usuário é obrigação, principalmente se permitirmos que ela seja em HTML. Embora os editores WYSIWYG 
-sejam ótimos e possuam configurações de limpeza, nós não podemos escapar dessa árdua tarefa no back-end.
+possuam configurações de limpeza nós não podemos escapar dessa árdua tarefa no back-end.
 
 Há alguns anos conheci o [HTML Purifier](http://htmlpurifier.org/) e ele virou a ferramenta que mais utilizo para 
 "limpar" o HTML. 

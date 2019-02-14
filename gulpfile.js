@@ -1,43 +1,38 @@
-var gulp = require('gulp');
-var concat = require('gulp-concat');
-var uglify = require('gulp-uglify');
-var sass = require('gulp-sass');
-var postcss = require('gulp-postcss');
-var autoprefixer = require('autoprefixer');
-var cssnano = require('cssnano');
+const { src, dest, parallel, series, watch } = require('gulp');
+const concat = require('gulp-concat');
+const uglify = require('gulp-uglify');
+const sass = require('gulp-sass');
+const postcss = require('gulp-postcss');
+const autoprefixer = require('autoprefixer');
+const cssnano = require('cssnano');
 
 sass.compiler = require('node-sass');
 
-gulp.task('css', function () {
+function css() {
     var plugins = [
         autoprefixer({browsers: ['last 1 version']}),
         cssnano()
     ];
 
-    return gulp
-        .src(['./src/syntax.css', './src/main.scss'])
+    return src(['./src/syntax.css', './src/main.scss'])
         .pipe(concat('main.css'))
         .pipe(sass().on('error', sass.logError))
         .pipe(postcss(plugins))
-        .pipe(gulp.dest('./assets/css'));
-});
+        .pipe(dest('./assets/css'));
+}
 
-gulp.task('js', function () {
+function js() {
     var plugins = [
         './node_modules/bootstrap/js/dist/index.js',
         './node_modules/bootstrap/js/dist/util.js',
         './node_modules/bootstrap/js/dist/collapse.js'
     ];
 
-    return gulp
-        .src(plugins)
+    return src(plugins)
         .pipe(concat('bootstrap.js'))
         .pipe(uglify())
-        .pipe(gulp.dest('./assets/js'));
-});
+        .pipe(dest('./assets/js'));
+};
 
-gulp.task('default', gulp.parallel('css', 'js'));
-
-gulp.task('watch', function () {
-    gulp.watch('./src/**/*.+(scss|css)', gulp.series('css'));
-});
+exports.default = parallel(css, js);
+exports.watch = watch('./src/**/*.+(scss|css)', series(css));

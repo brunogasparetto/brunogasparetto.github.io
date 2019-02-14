@@ -1,18 +1,27 @@
 {
-  "name": "UsingGulp",
+  "name": "brunogasparetto.github.io",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Blog pessoal para compartilhar experiências",
+  "main": "",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dist": "gulp"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "blog",
+    "pessoal",
+    "bruno",
+    "gasparetto",
+    "php"
+  ],
+  "author": "Bruno Gasparetto",
   "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/brunogasparetto/brunogasparetto.github.io/issues"
+  },
+  "homepage": "https://brunogasparetto.github.io",
   "devDependencies": {
-    "bootstrap": "^4.1.3",
-    "cssnano": "^4.1.7",
+    "bootstrap": "^4.3.1",
+    "cssnano": "^4.1.10",
     "gulp": "^4.0.0",
     "gulp-autoprefixer": "^6.0.0",
     "gulp-cli": "^2.0.1",

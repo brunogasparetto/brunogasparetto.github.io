@@ -9,7 +9,7 @@ const cssnano = require('cssnano');
 sass.compiler = require('node-sass');
 
 function css() {
-    var plugins = [
+    const plugins = [
         autoprefixer({browsers: ['last 1 version']}),
         cssnano()
     ];
@@ -22,7 +22,7 @@ function css() {
 }
 
 function js() {
-    var plugins = [
+    const plugins = [
         './node_modules/bootstrap/js/dist/index.js',
         './node_modules/bootstrap/js/dist/util.js',
         './node_modules/bootstrap/js/dist/collapse.js'
@@ -32,7 +32,11 @@ function js() {
         .pipe(concat('bootstrap.js'))
         .pipe(uglify())
         .pipe(dest('./assets/js'));
-};
+}
+
+function watchFiles() {
+    watch('./src/**/*.+(scss|css)', series(css));
+}
 
 exports.default = parallel(css, js);
-exports.watch = watch('./src/**/*.+(scss|css)', series(css));
+exports.watch = series(watchFiles);

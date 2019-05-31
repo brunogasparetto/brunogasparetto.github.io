@@ -12,78 +12,68 @@ tags:
     - html purifier
 ---
 
-Tratar entrada de usuário é obrigação, principalmente se permitirmos que ela seja em HTML. Embora os editores WYSIWYG 
+Tratar entrada de usuário é obrigação, principalmente se permitirmos que ela seja em HTML. Embora os editores WYSIWYG
 possuam configurações de limpeza nós não podemos escapar dessa árdua tarefa no back-end.
 
-Há alguns anos conheci o [HTML Purifier](http://htmlpurifier.org/) e ele virou a ferramenta que mais utilizo para 
-"limpar" o HTML. 
+Há alguns anos conheci o [HTML Purifier](http://htmlpurifier.org/) e ele virou a ferramenta que mais utilizo para
+"limpar" o HTML.
 
 Infelizmente quase sempre usei a configuração padrão do HTML Purifier.
 Em partes por que me atendia bem, mas também por que a documentação não é muito atrativa.
 
 > Porém, a vida é uma caixinha de surpresas e numa bela manhã de Sol [...]
 
-Recentemente estava trabalhando numa versão antiga do [Moodle](https://moodle.org/), que está utilizando 
-o framework [Bootstrap](https://getbootstrap.com/), e comecei a perceber problemas com conteúdo HTML dos alunos, 
+Recentemente estava trabalhando numa versão antiga do [Moodle](https://moodle.org/), que está utilizando
+o framework [Bootstrap](https://getbootstrap.com/), e comecei a perceber problemas com conteúdo HTML dos alunos,
 principalmente quando eles copiavam o texto de páginas Web.
 
-Devido ao texto vir com "sujeira" (muito CSS inline e elementos com tamanhos definidos com width e height) o 
+Devido ao texto vir com "sujeira" (muito CSS inline e elementos com tamanhos definidos com width e height) o
 layout ficava destoante e em alguns casos ficava quebrado mesmo, impedindo que o grid se ajustasse à largura da tela.
 
-E como a necessidade nos força a sair da zona de conforto resolvi estudar mais a documentação do HTML Purifier 
+E como a necessidade nos força a sair da zona de conforto resolvi estudar mais a documentação do HTML Purifier
 e aqui estou pra entregar um pouco do que aprendi.
 
 ## Funcionamento básico
 
-O exemplo mais simples de uso do HTML Purifier é:
+O exemplo mais simples de uso do HTML Purifier, após incluir o autoload, é:
 
 ```php
 <?php
-
-/*
- * Necessário incluir o arquivo library/HTMLPurifier.auto.php
- * ou o arquivo vendor/autoload.php se instalou com o Composer
- */
 
 $config = HTMLPurifier_Config::createDefault();
 $purifier = new HTMLPurifier($config);
 $html_limpo = $purifier->purify($html_sujo);
 ```
 
-A configuração padrão do HTML Purifier atende muito bem na maioria dos casos. 
+A configuração padrão do HTML Purifier atende muito bem na maioria dos casos.
 Na página de [demonstração](http://htmlpurifier.org/demo.php) é possível testar as opções de configuração.
 
-Mas é na [documentação da configuração](http://htmlpurifier.org/live/configdoc/plain.html) que tudo começa a 
+Mas é na [documentação da configuração](http://htmlpurifier.org/live/configdoc/plain.html) que tudo começa a
 ficar mais interessante.
 
 ## Configurando o HTML Purifier
 
-Para definir um item da configuração basta copiar seu nome na página de configuração e passar o valor desejado 
-à variável de configuração, que sempre trarei na variável **$config**.
+Para definir um item da configuração basta copiar seu nome na página de configuração e passar o valor desejado
+à variável de configuração, que sempre trarei na variável **$config**. Os nomes são bem explicativos.
 
 ```php
 <?php
 
 $config = HTMLPurifier_Config::createDefault();
-
-// Remove tags vazias
 $config->set('AutoFormat.RemoveEmpty', true);
-
-// Considera como vazia uma tag que só tenha espaço em branco e &nbsp;
 $config->set('AutoFormat.RemoveEmpty.RemoveNbsp', true);
 ```
 
 ### Uma configuração menos permissiva
 
-Para o meu caso eu precisava remover várias propriedades, classes e até elementos do HTML que o usuário postava. 
-Basicamente eu poderia permitir somente algumas propriedades como cores, negrito, alinhamento etc.
+Para o meu caso eu precisava remover várias propriedades, classes e até elementos do HTML que o usuário postava. Basicamente eu poderia permitir somente algumas propriedades como cores, negrito, alinhamento etc.
 
 Pensando em tudo que era permitido e proibido eu fiz a seguinte configuração:
 
 ```php
 <?php
 
-$cssPropriedadesPermitidas = [
+$allowedStyleProperties = [
     'color',
     'background-color',
     'font-size',
@@ -92,7 +82,7 @@ $cssPropriedadesPermitidas = [
     'text-decoration',
 ];
 
-$classesPermitidas = [
+$allowedClasses = [
     'img-responsive',
     'table',
     'table-responsive',
@@ -100,16 +90,16 @@ $classesPermitidas = [
     'table-condensed',
 ];
 
-$elementosProibidos = [
+$forbiddenElements = [
     'script',
     'style'
 ];
 
 /*
- * Aqui o padrão é tag@atributo
- * O asterisco no lugar da tag indica que tratará o atributo para todas as tags
+ * Aqui o padrão é tag@attribute
+ * O asterisco no lugar da tag indica que tratará todas as tags
  */
-$atributosProibidos = [
+$forbiddenAttributes = [
     '*@width',
     '*@height',
     'table@border',
@@ -118,35 +108,14 @@ $atributosProibidos = [
 ];
 
 $config = HTMLPurifier_Config::createDefault();
-
-// Remove tags vazias
+$config->set('CSS.AllowedProperties', $allowedStyleProperties);
+$config->set('Attr.AllowedClasses', $allowedClasses);
+$config->set('HTML.ForbiddenElements', $forbiddenElements);
+$config->set('HTML.ForbiddenAttributes', $forbiddenAttributes);
 $config->set('AutoFormat.RemoveEmpty', true);
-
-/*
- * Considera tags somente com espaço em branco e &nbsp; como vazias
- * th e td são exceções a essa regra, mas você pode incluí-los
- */
-$config->set('AutoFormat.RemoveEmpty.RemoveNbsp', true);
-
-// Remove span sem atributos
 $config->set('AutoFormat.RemoveSpansWithoutAttributes', true);
-
-// Propriedades permitidas para o CSS inline
-$config->set('CSS.AllowedProperties', $CssPropriedadesPermitidas);
-
-// Classes permitidas nas tags
-$config->set('Attr.AllowedClasses', $classesPermitidas);
-
-// Elementos que não podem ser utilizadas
-$config->set('HTML.ForbiddenElements', $elementosProibidos);
-
-// Atributos que não podem ser utilizados
-$config->set('HTML.ForbiddenAttributes', $atributosProibidos);
-
-// Quebra de linha independente do SO
 $config->set('Output.Newline', "\n");
-
-// O nível de análise para a troca dos elementos descontinuados
+$config->set('AutoFormat.RemoveEmpty.RemoveNbsp', true);
 $config->set('HTML.TidyLevel', 'heavy');
 ```
 
@@ -154,14 +123,12 @@ $config->set('HTML.TidyLevel', 'heavy');
 
 Se você prestou atenção nas configurações deve ter notado a `HTML.TidyLevel`.
 
-O HTML Purifier utiliza essa configuração para substituir as tags e atributos descontinuados por tags e 
+O HTML Purifier utiliza essa configuração para substituir as tags e atributos descontinuados por tags e
 atributos atualizados. Ou seja, ele pega um HTML assim:
 
 ```html
 <p align="center" bgcolor="#FFFFFF">Centralizado e Branco</p>
 <center>Centralizado!</center>
-<p><strike>Tachado</strike></p>
-<p><font size="2" color="#000000">Tag font?</font></p>
 ```
 
 E deixa assim:
@@ -169,42 +136,40 @@ E deixa assim:
 ```html
 <p style="text-align:center; background-color: #FFFFFF">Centralizado e Branco</p>
 <div style="text-align:center">Centralizado!</div>
-<p style="text-decoration:line-through">Tachado</p>
-<p><span style="font-size:small; color:#000000">Tag font?</span></p>
 ```
 
-A ótima notícia é que podemos usar a ferramenta de análise e transformação do HTML Purifier 
+A ótima notícia é que podemos usar a ferramenta de análise e transformação do HTML Purifier
 para fazer as nossas modificações.
 
-Podemos personalizar as definições do HTML, olha só a 
-[documentação de personalização](http://htmlpurifier.org/docs/enduser-customize.html), 
+Podemos personalizar as definições do HTML, olha só a
+[documentação de personalização](http://htmlpurifier.org/docs/enduser-customize.html),
 mas isso é tema pra outro post. Por enquanto usar as transformações é o suficiente.
 
 ### Transformando Atributos
 
-Para alterar os atributos basta criar uma classe que estenda a `HTMLPurifier_AttrTransform` e 
-implemente o método `transform`, o qual recebe os atributos da tag, além da configuração e contexto, 
+Para alterar os atributos basta criar uma classe que estenda a `HTMLPurifier_AttrTransform` e
+implemente o método `transform`, o qual recebe os atributos da tag, além da configuração e contexto,
 realiza as mudanças e então retorna os atributos.
 
-No diretório `library/HTMLPurifier/AttrTransform` há várias classes utilizadas pelo HTML Purifier e 
-que podemos usar como exemplo para desenvolver as nossas. Todas estendem a classe `HTMLPurifier_AttrTransform` e 
+No diretório `library/HTMLPurifier/AttrTransform` há várias classes utilizadas pelo HTML Purifier e
+que podemos usar como exemplo para desenvolver as nossas. Todas estendem a classe `HTMLPurifier_AttrTransform` e
 implementam o método `transform`.
 
 ### Transformando Elementos
 
 De forma semelhante às transformações de atributos podemos realizar transformações completas nos elementos.
 
-Podemos criar uma classe que estenda a `HTMLPurifier_TagTransform` e que 
+Podemos criar uma classe que estenda a `HTMLPurifier_TagTransform` e que
 implemente o método `transform`, o qual recebe a tag, a configuração e o contexto.
 
-No diretório `library/HTMLPurifier/TagTransform` há duas classes utilizadas pelo HTML Purifier, a classe que 
-transforma a tag **font** e uma classe mais "genérica" que trata todas as outras transformações simples, 
+No diretório `library/HTMLPurifier/TagTransform` há duas classes utilizadas pelo HTML Purifier, a classe que
+transforma a tag **font** e uma classe mais "genérica" que trata todas as outras transformações simples,
 a `HTMLPurifier_TagTransform_Simple`.
 
 ### Configurando o HTML Purifier para usar as transformações
 
-Toda a configuração das transformações ficam nas definições do HTML. 
-Para pegar as definições basta usar o método `getHTMLDefinition` na **$config** e você receberá uma 
+Toda a configuração das transformações ficam nas definições do HTML.
+Para pegar as definições basta usar o método `getHTMLDefinition` na **$config** e você receberá uma
 instância da `HTMLPurifier_HTMLDefinition`.
 
 Nesse objeto de definições há 3 propriedades públicas que recebem as nossas instâncias de transformações.
@@ -220,7 +185,7 @@ Poderíamos configurar o HTML Purifier para fazer algumas trocas de teste assim:
 
 $htmlDefinition = $config->getHTMLDefinition();
 
-// Transformaria toda tag p em uma tag div com CSS inline para deixar o texto com sublinhado
+// Transformará toda tag p em uma tag div com CSS inline para deixar o texto com sublinhado
 $htmlDefinition->info_tag_transform['p'] = new HTMLPurifier_TagTransform_Simple(
     'div',
     'text-decoration:underline;'
@@ -247,7 +212,7 @@ Com isso em mente vamos ao trabalho.
 
 ### Adicionando as classes básicas nas tags
 
-Para adicionar as classes padrões que não dependem de alguma verificação criei uma classe genérica baseada na 
+Para adicionar as classes padrões que não dependem de alguma verificação criei uma classe genérica baseada na
 classe `HTMLPurifier_TagTransform_Simple`.
 
 ```php
@@ -360,8 +325,8 @@ Nessa versão quase pronta:
 
 ### Trocando o atributo border pela classe table-bordered
 
-Precisamos fazer a troca do atributo **border**, independente do seu valor, pela classe 
-**table-bordered**. Para isso basta criar uma classe estendendo a `HTMLPurifier_AttrTransform` e 
+Precisamos fazer a troca do atributo **border**, independente do seu valor, pela classe
+**table-bordered**. Para isso basta criar uma classe estendendo a `HTMLPurifier_AttrTransform` e
 então adicionar uma instância dela ao array `$htmlDefinition->info_attr_transform_pre`.
 
 ```php
@@ -386,7 +351,7 @@ class TableBorderAttrTransform extends HTMLPurifier_AttrTransform
     public function transform($attr, $config, $context)
     {
         /*
-         * O método é chamado para todas as tags, porém só quero realizar a transformação 
+         * O método é chamado para todas as tags, porém só quero realizar a transformação
          * quando for a tag table e atributo border
          */
         if (!isset($attr['border']) || $context->get('CurrentToken')->name !== 'table') {
@@ -401,7 +366,7 @@ class TableBorderAttrTransform extends HTMLPurifier_AttrTransform
         }
 
         $attr['class'] = $this->appendClasses($attr['class']);
-        
+
         return $attr;
     }
 
@@ -469,12 +434,12 @@ Agora é hora de bater um pouco a cabeça. Como usar a transformação para cria
 
 Simplesmente não vamos utilizar, afinal não queremos transformar uma table e sim inserir algo antes e depois dela.
 
-O HTML Purifier usa a classe `HTMLPurifier_Injector` para fazer inserções no HTML. 
-Por exemplo a opção `AutoFormat.Linkify` usa injector para inserir a tag **a** com o atributo **href** 
+O HTML Purifier usa a classe `HTMLPurifier_Injector` para fazer inserções no HTML.
+Por exemplo a opção `AutoFormat.Linkify` usa injector para inserir a tag **a** com o atributo **href**
 em torno de um texto que case com a regra de URL.
 
-Utilizar injector é mais complexo do que uma TagTransform por que você analisará os tokens que formam o HTML, 
-mas é possível resolver mais fácil do que os quebra-cabeças do novo filme da Lara Croft. 
+Utilizar injector é mais complexo do que uma TagTransform por que você analisará os tokens que formam o HTML,
+mas é possível resolver mais fácil do que os quebra-cabeças do novo filme da Lara Croft.
 
 Dê uma olhada no diretório `library\HTMLPurifier\Injector` e ficará surpreso com as inserções que o Purifier já possui.
 
@@ -484,13 +449,13 @@ Basicamente a `HTMLPurifier_Injector` possui 3 métodos para trabalhar com os to
 - **handleElement**: chamado quando o token é uma tag de início ou vazia
 - **handleEnd**: chamado quando o token é uma tag de fim
 
-Todos os métodos recebem uma referência de `HTMLPurifier_Token` e ela será modificada caso queira adicionar algo. 
+Todos os métodos recebem uma referência de `HTMLPurifier_Token` e ela será modificada caso queira adicionar algo.
 Geralmente será convertida em um array e então adicionará tokens neste array na sequência necessária.
 
 É importante observar as propriedades **name** e **needed** da `HTMLPurifier_Injector`.
 
-A propriedade `name` indica o nome do seu injector e a `needed` indica quais tags e atributos são necessários para ela 
-funcionar (a `HTMLPurifier_Injector` identifica o `needed` e caso exista alguma regra que proíba as tags e 
+A propriedade `name` indica o nome do seu injector e a `needed` indica quais tags e atributos são necessários para ela
+funcionar (a `HTMLPurifier_Injector` identifica o `needed` e caso exista alguma regra que proíba as tags e
 atributos já cancela a sua execução).
 
  Nosso injector ficou assim:

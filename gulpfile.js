@@ -10,7 +10,7 @@ sass.compiler = require('node-sass');
 
 function css() {
     const plugins = [
-        autoprefixer({browsers: ['last 1 version']}),
+        autoprefixer(),
         cssnano()
     ];
 

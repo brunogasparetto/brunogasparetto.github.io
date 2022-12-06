@@ -76,31 +76,6 @@ placement */
     /*float: right;*/
 /*}*/
 
-/* This bit of code is for the player indicator, which is represented in quandrants on the xbox controller. */
-.custom .quadrant {
-    position: absolute;
-    height: 17px;
-    width: 111px;
-    top: 140px;
-    left: 240px;
-}
-
-/* Since the player indicator is just a CSS sprite, we change the
-position of the background to match the player number.
-NOTE: Player orderin starts at 0, so p0 = Player 1 */
-.custom .p0 {
-    background-position: 0 -6px;
-}
-.custom .p1 {
-    background-position: 0 -28px;
-}
-.custom .p2 {
-    background-position: 0 -49px;
-}
-.custom .p3 {
-    background-position: 0 -70px;
-}
-
 /* This is to size and position the containing div for the start and select buttons. */
 .custom .arrows {
     position: absolute;
@@ -109,7 +84,6 @@ NOTE: Player orderin starts at 0, so p0 = Player 1 */
     top: 214px;
     left: 358px;
 }
-
 /* Setting the size and CSS sprite for the start adn select buttons */
 .custom .back, .custom .start {
     width: 71.5px;

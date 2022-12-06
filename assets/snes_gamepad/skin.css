@@ -19,16 +19,16 @@
     display: none;
 }
 
-/* The triggers are housed inside a div, so this sizes the div properly and positions it */
-.custom .triggers {
+/* The bumpers are housed inside a div, so this sizes the div properly and positions it */
+.custom .bumpers {
     width: 759px;
     height: 34px;
     position: absolute;
     left: 104px;
 }
 
-/* These are the actual triggers themselves */
-.custom .trigger {
+/* These are the actual bumpers themselves */
+.custom .bumper {
     width: 211px;
     height: 34px;
     background: url(drawing.svg);
@@ -36,45 +36,12 @@
     background-repeat: no-repeat;
     opacity: 0;
 }
-.custom .trigger.left {
+.custom .bumper.left {
     float: left;
 }
-.custom .trigger.right {
+.custom .bumper.right {
     float: right;
-    -webkit-transform: rotateY(180deg);
-    transform: rotateY(180deg);
 }
-
-/* The bumpers follow the same methodology as the triggers in terms of
-placement */
-/*.custom .bumper {*/
-    /*width: 89px;*/
-    /*height: 28px;*/
-    /*background: url();*/
-    /*opacity: 0;*/
-/*}*/
-/*.custom .bumpers {*/
-    /*position: absolute;*/
-    /*width: 586px;*/
-    /*height: 28px;*/
-    /*left: 99px;*/
-    /*top: 72px;*/
-/*}*/
-/*.custom .bumper.pressed { [> The '.pressed' class is used for most buttons to signify they've been pressed <]*/
-    /*opacity: 1;*/
-/*}*/
-/*.custom .bumper.left {*/
-  /*/* Call me lazy or smart, but why should I make 2 bumpers when they're symmetrical*/
-  /*and I can just rotate them in the browser? Also, note that you most likely won't need*/
-  /*to use a browser speficic prefix unless it's something that is indeed browser specific.*/
-  /*NOTE: CLR Browser is basically chrome, so you use '-webkit-' as the browser prefix. */*/
-    /*-webkit-transform: rotateY(180deg);*/
-    /*transform: rotateY(180deg);*/
-    /*float: left;*/
-/*}*/
-/*.custom .bumper.right {*/
-    /*float: right;*/
-/*}*/
 
 /* This is to size and position the containing div for the start and select buttons. */
 .custom .arrows {

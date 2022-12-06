@@ -32,15 +32,23 @@
     width: 211px;
     height: 34px;
     background: url(drawing.svg);
-    background-position: -967px 0px;
     background-repeat: no-repeat;
     opacity: 0;
 }
 .custom .bumper.left {
     float: left;
+    background-position: 103px 0;
+}
+.custom .bumper.left.pressed {
+    background-position: -967px 0;
 }
 .custom .bumper.right {
     float: right;
+    background-position: 652px 0;
+}
+.custom .bumper.right.pressed {
+    background-position: -967px 0;
+    transform: rotateY(180deg);
 }
 
 /* This is to size and position the containing div for the start and select buttons. */

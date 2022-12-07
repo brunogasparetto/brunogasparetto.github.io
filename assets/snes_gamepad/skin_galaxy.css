@@ -1,0 +1,159 @@
+/* This class defines the base attributes of the skin */
+.controller.custom {
+    background: url(snes_galaxy.png);
+    background-repeat: no-repeat;
+    background-position: 0px 0px;
+    width: 869px;
+    height: 388px;
+    margin-left: -434.5px;
+    margin-top: -194px;
+}
+.custom.disconnected {
+    background: url(snes_galaxy.png);
+    background-position: 0px -400px;
+    background-repeat: no-repeat;
+}
+
+/* This hides the controller's button when disconnected so only the background image remains */
+.custom.disconnected div {
+    display: none;
+}
+
+/* The bumpers are housed inside a div, so this sizes the div properly and positions it */
+.custom .bumpers {
+    width: 775px;
+    height: 34px;
+    position: absolute;
+    top: 32px;
+    left: 49px;
+}
+
+/* These are the actual bumpers themselves */
+.custom .bumper {
+    width: 248px;
+    height: 34px;
+}
+.custom .bumper.left {
+    float: left;
+}
+.custom .bumper.right {
+    float: right;
+}
+.custom .bumper.left.pressed, .custom .bumper.right.pressed {
+    background: url(snes_galaxy.png);
+    background-position: -880px 0;
+}
+
+/* This is to size and position the containing div for the start and select buttons. */
+.custom .arrows {
+    position: absolute;
+    width: 156px;
+    height: 60px;
+    top: 214px;
+    left: 361px;
+}
+/* Setting the size and CSS sprite for the start adn select buttons */
+.custom .back, .custom .start {
+    width: 71.5px;
+    height: 61.5px;
+}
+.custom .back.pressed, .custom .start.pressed {
+    background: url(snes_galaxy.png);
+    background-position: -976px -47px;
+}
+.custom .back {
+    float: left;
+}
+.custom .start {
+    float: right;
+}
+
+/* Positioning and size of the container for the face buttons */
+.custom .abxy {
+    position: absolute;
+    width: 266px;
+    height: 268px;
+    top: 77px;
+    left: 567px;
+}
+
+/* base class used to simplify the sprite mapping */
+.custom .button {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+}
+.custom .button.pressed {
+    background: url(snes_galaxy.png);
+    background-position: -882px -184px;
+}
+.custom .a {
+    top: 168px;
+    left: 83px;
+}
+.custom .b {
+    top: 85px;
+    right: 0px;
+}
+.custom .x {
+    top: 89px;
+}
+.custom .y {
+    left: 82px;
+}
+
+/* Dpad possitioning and sizing */
+.custom .dpad {
+    position: absolute;
+    width: 250px;
+    height: 250px;
+    top: 91px;
+    left: 48px;
+}
+.custom .face {
+    position: absolute;
+}
+.custom .face.up, .custom .face.down {
+    width: 69px;
+    height: 124px;
+}
+.custom .face.left, .custom .face.right {
+    width: 69px;
+    height: 124px;
+}
+.custom .face.up {
+    left: 90px;
+    top: 0;
+}
+.custom .face.down {
+    left: 90px;
+    top: 126px;
+    -webkit-transform: rotateX(180deg);
+    transform: rotateX(180deg);
+}
+.custom .face.left {
+    top: 62px;
+    left: 28px;
+    -webkit-transform: rotate(-90deg);
+    transform: rotate(-90deg);
+}
+.custom .face.right {
+    top: 62px;
+    right: 27px;
+    -webkit-transform: rotate(90deg);
+    transform: rotate(90deg);
+}
+.custom .face.pressed {
+    background: url(snes_galaxy.png);
+    background-position: -887px -44px;
+}
+.custom .down.face.pressed, .custom .face.right.pressed {
+    background-position-y: -42px;
+}
+
+/* NOTE: You NEED to set this to exactly half the height of what is listed
+for '.controller.custom' so when your skin is activated via player selection
+parameters it will be correctly centered on screen. */
+.custom.half {
+    margin-top: -194px;
+}

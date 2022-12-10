@@ -21,16 +21,16 @@
 
 /* The bumpers are housed inside a div, so this sizes the div properly and positions it */
 .custom .bumpers {
-    width: 775px;
+    width: 776px;
     height: 34px;
     position: absolute;
     top: 32px;
-    left: 49px;
+    left: 48px;
 }
 
 /* These are the actual bumpers themselves */
 .custom .bumper {
-    width: 248px;
+    width: 249px;
     height: 34px;
 }
 .custom .bumper.left {
@@ -41,7 +41,7 @@
 }
 .custom .bumper.left.pressed, .custom .bumper.right.pressed {
     background: url(snes_galaxy.png);
-    background-position: -880px 0;
+    background-position: -879px 0;
 }
 
 /* This is to size and position the containing div for the start and select buttons. */
@@ -105,20 +105,20 @@
 /* Dpad possitioning and sizing */
 .custom .dpad {
     position: absolute;
-    width: 250px;
+    width: 251px;
     height: 250px;
     top: 91px;
-    left: 48px;
+    left: 47px;
 }
 .custom .face {
     position: absolute;
 }
 .custom .face.up, .custom .face.down {
-    width: 69px;
+    width: 70px;
     height: 124px;
 }
 .custom .face.left, .custom .face.right {
-    width: 69px;
+    width: 70px;
     height: 124px;
 }
 .custom .face.up {
@@ -145,7 +145,7 @@
 }
 .custom .face.pressed {
     background: url(snes_galaxy.png);
-    background-position: -887px -44px;
+    background-position: -886px -44px;
 }
 .custom .down.face.pressed, .custom .face.right.pressed {
     background-position-y: -42px;

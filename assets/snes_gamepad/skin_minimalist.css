@@ -7,7 +7,7 @@
     margin-top: -212px;
 }
 .custom.disconnected {
-    background: url(minimalist.svg) no-repeat 0 467px;
+    background: url(minimalist.svg) no-repeat 0 -467px;
 }
 
 /* This hides the controller's button when disconnected so only the background image remains */

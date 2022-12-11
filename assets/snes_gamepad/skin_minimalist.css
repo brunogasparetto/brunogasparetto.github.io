@@ -84,20 +84,20 @@
     background: url(minimalist.svg) no-repeat -1153px -331px;
 }
 .custom .a {
-    top: 110px;
-    right: 0;
-}
-.custom .b {
     bottom: 0;
     left: 106px;
 }
-.custom .x {
-    top: 0;
-    left: 106px;
+.custom .b {
+    top: 110px;
+    right: 0;
 }
-.custom .y {
+.custom .x {
     top: 109px;
     left: 0;
+}
+.custom .y {
+    top: 0;
+    left: 106px;
 }
 
 /* Dpad possitioning and sizing */

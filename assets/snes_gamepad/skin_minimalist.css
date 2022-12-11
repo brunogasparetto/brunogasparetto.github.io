@@ -1,0 +1,146 @@
+/* This class defines the base attributes of the skin */
+.controller.custom {
+    background: url(minimalist.svg) no-repeat 0 0;
+    width: 1132px;
+    height: 445px;
+    margin-left: -485px;
+    margin-top: -212px;
+}
+.custom.disconnected {
+    background: url(minimalist.svg) no-repeat 0 467px;
+}
+
+/* This hides the controller's button when disconnected so only the background image remains */
+.custom.disconnected div {
+    display: none;
+}
+
+/* The bumpers are housed inside a div, so this sizes the div properly and positions it */
+.custom .bumpers {
+    width: 1132px;
+    height: 154px;
+    position: absolute;
+    left: 0;
+}
+
+/* These are the actual bumpers themselves */
+.custom .bumper {
+    width: 166px;
+    height: 153px;
+}
+.custom .bumper.left {
+    float: left;
+}
+.custom .bumper.left.pressed {
+    background: url(minimalist.svg) no-repeat -1155px -171.796px;
+}
+.custom .bumper.right {
+    float: right;
+    transform: rotateY(180deg);
+}
+.custom .bumper.right.pressed {
+    background: url(minimalist.svg) no-repeat -1155px -171.796px;
+}
+
+/* This is to size and position the containing div for the start and select buttons. */
+.custom .arrows {
+    position: absolute;
+    width: 152px;
+    height: 70px;
+    top: 319px;
+    left: 496px;
+}
+/* Setting the size and CSS sprite for the start adn select buttons */
+.custom .back, .custom .start {
+    width: 66px;
+    height: 67px;
+}
+.custom .back.pressed, .custom .start.pressed {
+    background: url(minimalist.svg) no-repeat -1155px -490px;
+}
+.custom .back {
+    float: left;
+}
+.custom .start {
+    float: right;
+}
+
+/* Positioning and size of the container for the face buttons */
+.custom .abxy {
+    position: absolute;
+    width: 363px;
+    height: 365px;
+    top: 82px;
+    left: 732px;
+}
+
+/* base class used to simplify the sprite mapping */
+.custom .button {
+    position: absolute;
+    width: 147px;
+    height: 147px;
+}
+.custom .button.pressed {
+    background: url(minimalist.svg) no-repeat -1153px -331px;
+}
+.custom .a {
+    top: 110px;
+    right: 0;
+}
+.custom .b {
+    bottom: 0;
+    left: 106px;
+}
+.custom .x {
+    top: 0;
+    left: 106px;
+}
+.custom .y {
+    top: 109px;
+    left: 0;
+}
+
+/* Dpad possitioning and sizing */
+.custom .dpad {
+    position: absolute;
+    width: 340px;
+    height: 338px;
+    top: 95px;
+    left: 34px;
+}
+.custom .face {
+    position: absolute;
+}
+.custom .face.up, .custom .face.down, .custom .face.left, .custom .face.right {
+    width: 141px;
+    height: 167px;
+}
+.custom .face.up {
+    left: 100px;
+    top: 0;
+}
+.custom .face.down {
+    left: 100px;
+    bottom: 0;
+    transform: rotateX(180deg);
+}
+.custom .face.left {
+    top: 85px;
+    left: 13px;
+    transform: rotate(-90deg);
+}
+.custom .face.right {
+    top: 85px;
+    right: 13px;
+    transform: rotate(90deg);
+}
+.custom .face.pressed {
+    background: url(minimalist.svg) no-repeat -1155px 0px;
+}
+
+/* NOTE: You NEED to set this to exactly half the height of what is listed
+for '.controller.custom' so when your skin is activated via player selection
+parameters it will be correctly centered on screen. */
+.custom.half {
+    margin-top: -222.5px;
+}

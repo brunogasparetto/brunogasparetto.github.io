@@ -2,14 +2,49 @@
 layout: default
 ---
 
-<ul class="list-posts">
-{%- for post in site.posts -%}
-  <li>
-    <h3>
-      <a href="{{ post.url | absolute_url }}">{{ post.title | escape }}</a>
-    </h3>
-    <p>{{ post.excerpt }}</p>
-    <span class="post-meta">{%- include date.html date=post.date -%}</span>
-  </li>
-{%- endfor -%}
-</ul>
+<main class="post-list">
+  {% for post in site.tags.pinned %}
+  <a href="{{post.url | absolute_url }}">
+    <div class="card-post hidden-animation">
+      <div class="card-post-meta">
+        <h2>{{post.title}}</h2>
+        <p class="card-post-description text-secondary text-truncate">{{post.description}}</p>
+        <p class="card-post-info text-secondary">
+          <span>
+            <i class="fa-regular fa-calendar"></i>
+            <time>{{post.date | date: "%d . %m . %Y"}}</time>
+          </span>
+          <i>&bull;</i>
+          <span>
+            <i class="fa-regular fa-clock"></i>
+            {% include read-time.html content=post.content %}
+          </span>
+        </p>
+      </div>
+    </div>
+  </a>
+  {% endfor %}
+  {% for post in site.posts %}
+  {% unless post.tags contains 'pinned' %}
+  <a href="{{post.url | absolute_url }}">
+    <div class="card-post hidden-animation">
+      <div class="card-post-meta">
+        <h2>{{post.title}}</h2>
+        <p class="card-post-description text-secondary text-truncate">{{post.description}}</p>
+        <p class="card-post-info text-secondary">
+          <span>
+            <i class="fa-regular fa-calendar"></i>
+            <time>{{post.date | date: "%d . %m . %Y"}}</time>
+          </span>
+          <i>&bull;</i>
+          <span>
+            <i class="fa-regular fa-clock"></i>
+            {% include read-time.html content=post.content %}
+          </span>
+        </p>
+      </div>
+    </div>
+  </a>
+  {% endunless %}
+  {% endfor %}
+</main>

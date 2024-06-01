@@ -1,14 +1,17 @@
 ---
 layout: default
 ---
-<article class="post">
 
-  <header class="post-header">
-    <h1 class="post-title">{{ page.title | escape }}</h1>
-  </header>
+<main class="main-content hidden-animation">
+  <article>
+    <header>
+      <h1 class="page-title">{{page.title}}</h1>
+    </header>
 
-  <div class="post-content">
-    {{ content }}
-  </div>
+    <section class="content">
+      {{content}}
+    </section>
+  </article>
 
-</article>
+  {% include page-panel.html %}
+</main>

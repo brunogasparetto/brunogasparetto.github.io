@@ -1,15 +1,13 @@
 ---
-layout: post
-title:  "HTML Purifier - Um pouco a mais da simples limpeza"
-date:   2018-03-30 19:00:00 -0400
-excerpt: >
-    Usar o HTML Purifier para remover perigos é essencial para exibir HTML do usuário,
-    mas podemos usá-lo para tratamentos mais avançados, podendo transformar o HTML do usuário para algo mais
-    próximo ao desejado para o site (adicionar classes, wrappers etc).
+title: "HTML Purifier - Um pouco a mais da simples limpeza"
+description: Efetuando uma limpeza poderosa no HTML para evitar dores de cabeça com conteúdo indesejado e possíveis quebras de layout.
+date: 2018-03-30 19:00:00 -0400
+categories: php tutorial
 tags:
-    - dev
-    - php
-    - html purifier
+  - desenvolvimento
+  - php
+  - html
+  - purifier
 ---
 
 Tratar entrada de usuário é obrigação, principalmente se permitirmos que ela seja em HTML. Embora os editores WYSIWYG

@@ -1,0 +1,38 @@
+<aside id="sidebar" class="sidebar">
+  <header class="sidebar-header">
+    <a href="{{'/' | absolute_url}}"><img src="{{site.avatar | absolute_url}}" alt="avatar" class="avatar"
+        loading="lazy"></a>
+    <h2><a href="{{'/' | absolute_url}}" aria-label="Website Title">{{site.title}}</a></h2>
+    <p class="tagline">{{site.tagline}}</p>
+  </header>
+
+  <nav class="sidebar-nav">
+    <ul>
+      <li><a href="{{'/' | absolute_url}}"><i class="fa-solid fa-house"></i> Home</a></li>
+      <li><a href="{{'/search' | absolute_url}}" aria-label="Pesquisar"><i class="fa-solid fa-magnifying-glass"></i> Pesquisar</span></li>
+      <li><a href="{{'/about' | absolute_url}}"><i class="fa-solid fa-circle-info"></i> Sobre</a>
+      </li>
+    </ul>
+  </nav>
+
+  <div class="sidebar-icons-actions">
+    <div class="sidebar-social-icons">
+      {% include social-icons.html %}
+    </div>
+
+    <div class="sidebar-blog-resources">
+      <a href="{{'/feed.xml' | absolute_url}}" aria-label="Feed RSS" target="_blank"><i class="fa-solid fa-rss"></i></a>
+    </div>
+  </div>
+
+  <footer class="sidebar-footer">
+    <!-- <p>
+      <a href="{{site.licenseUrl}}" target="_blank">{{site.license}}</a>
+      <i>&bull;</i>
+      <span id="currentYear">2023</span>
+    </p> -->
+    <p>Made with <a href="https://jekyllrb.com/" target="_blank">Jekyll</a></p>
+    <p><a href="https://github.com/elainefs/jekyll-theme-case" target="_blank">Jekyll Theme Case</a></p>
+  </footer>
+
+</aside>

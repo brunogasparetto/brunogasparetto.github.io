@@ -1,0 +1,31 @@
+- brand: PHP
+  name: PHP
+  color: 7a86b8
+
+- brand: Laravel
+  name: Laravel
+  color: ff3326
+
+- brand: JavaScript
+  name: JS
+  color: F7DF1E
+
+- brand: TypeScript
+  name: TS
+  color: 3179c6
+
+- brand: csswizardry
+  name: CSS
+  color: 379ad6
+
+- brand: SASS
+  name: SASS
+  color: ce6b9c
+
+- brand: TailwindCss
+  name: TailwindCss
+  color: 38bdf8
+
+- brand: OpenJDK
+  name: Java
+  color: e97104

@@ -1,0 +1,19 @@
+- brand: Docker
+  name: Docker
+  color: 119fed
+
+- brand: GitHub
+  name: GitHub
+  color: 080808
+
+- brand: GitLab
+  name: GitLab
+  color: e34930
+
+- brand: totvs
+  name: Fluig
+  color: ffcc10
+
+- brand: totvs
+  name: RM
+  color: 0199be

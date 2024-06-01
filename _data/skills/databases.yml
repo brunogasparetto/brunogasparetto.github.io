@@ -1,0 +1,19 @@
+- brand: microsoft
+  name: SQLServer
+  color: 0078d4
+
+- brand: MySQL
+  name: MySQL
+  color: 3e6e93
+
+- brand: MariaDB
+  name: MariaDB
+  color: ba7257
+
+- brand: PostgreSQL
+  name: PostgreSQL
+  color: 336791
+
+- brand: Redis
+  name: Redis
+  color: c83632

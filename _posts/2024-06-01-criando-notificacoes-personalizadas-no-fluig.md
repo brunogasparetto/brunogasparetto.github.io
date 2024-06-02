@@ -85,7 +85,7 @@ Agora podemos acessar o endpoint `/api/public/alert/module/findVoList` para veri
 e pegar o ID do módulo, pois precisaremos dele para adicionar os eventos.
 
 No navegador, em uma aba que está com uma página do Fluig aberta, pode acessar a URL indicada.
-Por exemplo: <https://meufluig.com.br/api/public/alert/module/findVoList>.
+Por exemplo: *https://meufluig.com.br/api/public/alert/module/findVoList*.
 
 <img src="/assets/img/2024-06-01-criando-notificacoes-personalizadas-no-fluig/modulo_criado.jpg" alt="Módulo criado" style="max-width: 452px">
 

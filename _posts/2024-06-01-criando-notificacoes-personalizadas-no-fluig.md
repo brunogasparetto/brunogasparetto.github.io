@@ -150,7 +150,7 @@ function createDataset(fields, constraints, sorts) {
     alertService.sendNotification(
         "FROTA_CNH_VENCIDA",
         null,
-        "userCode de quem vai receber a notificação",
+        "login de quem vai receber a notificação",
         objeto,
         null,
         null,

@@ -2,6 +2,10 @@
 title: "Criando notificações personalizadas no Fluig"
 description: "Cansado de só enviar notificações por e-mail? Vamos aprender a criar notificações personalizadas no sistema."
 date: 2024-06-01 15:00:00 -0400
+image:
+  path: "/assets/img/2024-06-01-criando-notificacoes-personalizadas-no-fluig/poster_post.jpg"
+  alt: "Exemplo de notificação personalizada no Fluig"
+  caption: "Criando notificações personalizadas no Fluig"
 categories: fluig tutorial
 tags:
   - fluig

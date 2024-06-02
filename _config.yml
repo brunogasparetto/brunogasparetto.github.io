@@ -72,6 +72,8 @@ exclude:
   - LICENSE
   - rollup.config.js
   - package*.json
+  - .gitignore
+  - .editorconfig
 
 include:
   - _pages

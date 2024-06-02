@@ -25,10 +25,14 @@ layout: default
         </span>
       </div>
 
-      <figure class="post-banner">
-        <img src="{{page.image.path | absolute_url}}" alt="{{page.image.alt}}" loading="lazy" />
-        <figcaption>{{page.image.caption}}</figcaption>
-      </figure>
+      {% if page.image.path and page.image.hide != true %}
+        <figure class="post-banner">
+          <img src="{{page.image.path | absolute_url}}" alt="{{page.image.alt}}" loading="lazy">
+          {% if page.image.caption %}
+            <figcaption>{{page.image.caption}}</figcaption>
+          {% endif %}
+        </figure>
+      {% endif %}
 
     </header>
 

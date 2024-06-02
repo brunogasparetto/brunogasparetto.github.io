@@ -6,6 +6,7 @@ image:
   path: "/assets/img/2024-06-01-criando-notificacoes-personalizadas-no-fluig/poster_post.jpg"
   alt: "Exemplo de notificação personalizada no Fluig"
   caption: "Criando notificações personalizadas no Fluig"
+  hide: true
 categories: fluig tutorial
 tags:
   - fluig

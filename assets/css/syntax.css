@@ -152,7 +152,7 @@ code {
 }
 /* Comment Multiline */
 .highlight .cm {
-  color: #645193;
+  color: #ac9bd7;
   background-color: transparent;
 }
 /* Comment Preproc */
@@ -162,7 +162,7 @@ code {
 }
 /* Comment Single */
 .highlight .c1 {
-  color: #645193;
+  color: #ac9bd7;
   background-color: transparent;
 }
 /* Comment Special */

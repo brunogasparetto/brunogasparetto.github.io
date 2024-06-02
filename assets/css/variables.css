@@ -4,10 +4,11 @@
   --primary-color: #030518;
   --secondary-color: #0095e3;
   --text-color-light: #d9d9d9;
-  --details-color-blue: #2b71ba;
+  --details-color-blue: #00346b;
   --details-color-red: #c51414;
   --details-color-gray: #cccccc50;
   --bubble-tip: #12805c;
   --bubble-note: #588ef2;
   --bubble-warning: #d9534f;
+  --bs-body-bg: #f7f7f4;
 }

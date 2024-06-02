@@ -2,7 +2,7 @@
 title: "HTML Purifier - Um pouco a mais da simples limpeza"
 description: "Efetuando uma limpeza poderosa no HTML para evitar dores de cabeça com conteúdo indesejado e possíveis quebras de layout."
 date: 2018-03-30 19:00:00 -0400
-categories: php tutorial
+categories: php
 tags:
   - desenvolvimento
   - php

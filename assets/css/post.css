@@ -20,6 +20,16 @@
   object-position: 50% 50%;
 }
 
+.post-banner {
+    display: block;
+    height: 35rem;
+}
+
+.post-banner img {
+    object-fit: cover;
+    object-position: top;
+}
+
 .content-post a {
   color: var(--secondary-color);
   text-decoration: none;

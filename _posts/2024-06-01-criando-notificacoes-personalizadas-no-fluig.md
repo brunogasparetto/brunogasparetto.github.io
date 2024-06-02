@@ -5,9 +5,8 @@ date: 2024-06-01 15:00:00 -0400
 image:
   path: "/assets/img/2024-06-01-criando-notificacoes-personalizadas-no-fluig/poster_post.jpg"
   alt: "Exemplo de notificação personalizada no Fluig"
-  caption: "Criando notificações personalizadas no Fluig"
   hide: true
-categories: fluig tutorial
+categories: fluig
 tags:
   - fluig
   - desenvolvimento
@@ -72,7 +71,7 @@ fetch("/api/public/alert/module/create", {
         "Content-Type": "application/json;charset=utf-8",
     },
     body: JSON.stringify({
-        moduleKey: "PERSONALIZADAS",      // É o Código do Módulo que estamos criando
+        moduleKey: "PERSONALIZADAS",      // Código do Módulo
         descriptionKey: "Personalizadas"  // Descrição do Módulo
     }),
 });
@@ -104,13 +103,13 @@ fetch("/api/public/alert/event/createEvent", {
         "Content-Type": "application/json;charset=utf-8",
     },
     body: JSON.stringify({
-        eventKey: "FROTA_CNH_VENCIDA", // Este Código é o que usaremos para disparar a notificação
+        moduleId: 36, // ID do Módulo que criamos
+        eventKey: "FROTA_CNH_VENCIDA", // Código usado para disparar a notificação
         required: true,
         descriptionKey: "Frota: CNH Vencida",
         singleDescriptionKey: "A CNH está vencida.",
         groupDescriptionKey: "A CNH está vencida.",
         eventIcon: "/globalalertapi/resources/images/exclamation-sign.png",
-        moduleId: 36, // Este é o ID do módulo que criamos
         grouped: false,
         canRemove: false,
         removeAfterExecAction: true,

@@ -57,4 +57,8 @@
 
   <!-- JS -->
   <script src="{{'/assets/js/scripts.js' | absolute_url}}" defer></script>
+
+  {%- if jekyll.environment == 'production' and site.google_analytics -%}
+    {%- include google-analytics.html -%}
+  {%- endif -%}
 </head>

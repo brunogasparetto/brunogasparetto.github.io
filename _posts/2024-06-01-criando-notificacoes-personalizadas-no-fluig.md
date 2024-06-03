@@ -165,6 +165,14 @@ E agora podemos ver a notificação disparada.
 
 <img src="/assets/img/2024-06-01-criando-notificacoes-personalizadas-no-fluig/notificacao_disparada.jpg" alt="Módulo criado" style="max-width: 390px">
 
+## Mais Conteúdo sobre as Notificações
+
+No início eu indiquei que criei os módulos e eventos da notificação usando a API REST Old do Fluig. Por essa API também é possível executar várias
+outras ações com as notificações, inclusive enviar notificação (ao invés de fazer no back-end usando a API SDK).
+
+Então fica a dica para consultar a [API REST Old AlertServiceRest](https://api.fluig.com/old/resource_AlertServiceRest.html) para ver outras
+opções disponibilizadas.
+
 ## Considerações Finais
 
 A possibilidade de enviar notificações personalizadas auxilia muito em várias atividades, mas tenha cuidado para não

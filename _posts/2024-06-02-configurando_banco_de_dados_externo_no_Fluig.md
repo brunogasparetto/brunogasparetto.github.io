@@ -120,7 +120,7 @@ dê um nome apropriado para não ficar muito genérico.
 Agora precisamos criar a referência ao driver utilizado na conexão.
 
 Logo abaixo do último `<datasource>` temos a tag `<drivers>`, que é uma coleção de `<driver>`. Então
-vamos adicionar o a indicação do driver do Postgresql.
+vamos adicionar a indicação do driver do Postgresql.
 
 ```xml
 <driver name="postgresqlDriver" module="org.postgresql">
@@ -146,7 +146,7 @@ Caso você precise acessar outro servidor de banco de dados e ele seja do mesmo 
 precisará simplesmente criar um `<datasource>` usando como modelo a configuração do **FluigDS**.
 
 Simplesmente copie cole o `<datasource jta="true" jndi-name="java:/jdbc/FluigDS"` e altere o endereço
-do servidor, nome do banco de dados e usuário e senha.
+do servidor, nome do banco de dados, usuário e senha.
 
 ## Fazendo uma consulta ao banco de dados
 
@@ -198,8 +198,13 @@ try {
 
 ## Lembre-se da Segurança
 
-Sempre importante lembrar que o ideal é salvar as senhas de forma criptografada no Fluig.
+Os arquivos XML são texto plano, então qualquer pessoa com acesso ao servidor do Fluig pode visualizar as senhas
+de todos os bancos configurados no domain.xml. Pensando nisso é importante ter muito cuidado com a segurança,
+impedindo acesso não autorizado ao servidor.
 
-Você pode seguir a orientação da documentação <https://tdn.totvs.com/pages/releaseview.action?pageId=454434362>
+O Fluig também oferece uma maneira de armazenar as senhas criptografadas no *domain.xml*.
 
-Fim.
+Para aprender como configurar a criptografia das senha siga a documentação oficial:
+[Encriptação de senha do banco de dados](https://tdn.totvs.com/pages/releaseview.action?pageId=454434362)
+
+E não se esqueça de efetuar essas configurações primeiramente em um ambiente de testes.

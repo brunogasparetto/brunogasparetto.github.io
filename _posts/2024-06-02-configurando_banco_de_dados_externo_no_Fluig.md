@@ -13,14 +13,13 @@ tags:
   - postgresql
 ---
 
-Em algumas situações pode ser necessário que utilizemos acesso direto a algum banco de dados externo ao
-Fluig. Normalmente devido a algum sistema não possuir uma API que permita consultar/alterar os dados ou
-até mesmo por questão de performance, afinal pode ser muito mais rápido executar um SELECT no banco
-dados ao invés de chamar uma API, pegar o resultado, converter e só então utilizar. Já tive esse
-problema de performance ao consultar dados do TOTVS RM via SOAP.
+Em algumas situações pode ser necessário um acesso direto a um banco de dados externo.
+Normalmente devido a algum sistema não possuir uma API ou até por questão de performance,
+afinal normalmente é mais rápido executar um SELECT no banco dados.
+Já tive esse problema de performance ao consultar dados do TOTVS RM via SOAP.
 
-Então para ajudar nessa etapa de como configurar o banco de dados externo vou mostrar como fiz quando
-precisei fazer a configuração para acessar um banco Postgresql no nosso Fluig on premise.
+Então para ajudar nessa etapa de configurar o banco de dados externo vou mostrar como fiz quando
+precisei acessar um Postgresql no nosso Fluig on premise.
 
 ### Importante
 
@@ -33,7 +32,8 @@ A primeira etapa é pegar o driver JDBC do banco de dados. No caso do Postregsql
 [Página de Download](https://jdbc.postgresql.org/download/) e baixar a versão de acordo com o
 Fluig.
 
-Quando fiz essa instalação eu estava utilizando o Fluig 1.7.0, então peguei o arquivo `postgresql-42.2.20.jar`.
+Quando fiz essa instalação eu estava utilizando o Fluig 1.7.0, então peguei o arquivo `postgresql-42.2.20.jar`,
+porém a partir da versão **1.8.0** o Fluig utiliza o Java 11, então pode baixar a versão mais atual do driver.
 
 Com o driver baixado é hora de ir para o servidor do Fluig e começar a configurar tudo.
 
@@ -90,7 +90,7 @@ Então vamos criar uma configuração para indicar o acesso ao Postgresql adicio
   use-java-context="false"
   use-ccm="false"
 >
-  <connection-url>jdbc:postgresql://host-do-banco:porta/nome-da-base-de-dados</connection-url>
+  <connection-url>jdbc:postgresql://host:porta/banco-de-dados</connection-url>
   <driver>postgresqlDriver</driver>
   <transaction-isolation>TRANSACTION_READ_COMMITTED</transaction-isolation>
   <pool>
@@ -138,7 +138,15 @@ Procure a tag `<subsystem xmlns="urn:jboss:domain:ee:4.0">` e no final dela insi
 </global-modules>
 ```
 
-Tudo configurado, vamos reiniciar o Fluig.
+Tudo configurado, então é necessário reiniciar o Fluig.
+
+## Configurando a conexão para o mesmo SGBD utilizado pelo Fluig
+
+Caso você precise acessar outro servidor de banco de dados e ele seja do mesmo tipo utilizado no Fluig você
+precisará simplesmente criar um `<datasource>` usando como modelo a configuração do **FluigDS**.
+
+Simplesmente copie cole o `<datasource jta="true" jndi-name="java:/jdbc/FluigDS"` e altere o endereço
+do servidor, nome do banco de dados e usuário e senha.
 
 ## Fazendo uma consulta ao banco de dados
 

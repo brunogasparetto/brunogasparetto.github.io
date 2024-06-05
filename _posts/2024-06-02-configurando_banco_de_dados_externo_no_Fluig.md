@@ -1,10 +1,10 @@
 ---
 title: "Configurando banco de dados externo no Fluig"
 description: "Já precisou acessar um banco de dados externo no Fluig? Vamos ver um exemplo prático com Postgresql."
-date: 2024-06-02 15:00:00 -0400
+date: 2024-06-04 23:00:00 -0400
 image:
-  path: "/assets/img/2024-06-01-criando-notificacoes-personalizadas-no-fluig/poster_post.jpg"
-  alt: "Exemplo de notificação personalizada no Fluig"
+  path: "/assets/img/2024-06-02-configurando_banco_de_dados_externo_no_Fluig/cover.jpg"
+  alt: "Configurando o Postgresql no Fluig"
   hide: true
 categories: fluig
 tags:
@@ -15,8 +15,7 @@ tags:
 
 Em algumas situações pode ser necessário um acesso direto a um banco de dados externo.
 Normalmente devido a algum sistema não possuir uma API ou até por questão de performance,
-afinal normalmente é mais rápido executar um SELECT no banco dados.
-Já tive esse problema de performance ao consultar dados do TOTVS RM via SOAP.
+afinal é mais rápido executar um SELECT no banco dados.
 
 Então para ajudar nessa etapa de configurar o banco de dados externo vou mostrar como fiz quando
 precisei acessar um Postgresql no nosso Fluig on premise.
@@ -26,14 +25,17 @@ precisei acessar um Postgresql no nosso Fluig on premise.
 Para efetuar as configurações a seguir é necessário ter acesso ao servidor do Fluig, pois vamos colocar
 arquivos na sua pasta de instalação e alterar alguns arquivos de configuração.
 
+E **é altamente recomendado** primeiro fazer as configurações em um ambiente de testes para evitar
+surpresas desagradáveis.
+
 ## Baixando o driver JDBC
 
 A primeira etapa é pegar o driver JDBC do banco de dados. No caso do Postregsql basta ir na
 [Página de Download](https://jdbc.postgresql.org/download/) e baixar a versão de acordo com o
 Fluig.
 
-Quando fiz essa instalação eu estava utilizando o Fluig 1.7.0, então peguei o arquivo `postgresql-42.2.20.jar`,
-porém a partir da versão **1.8.0** o Fluig utiliza o Java 11, então pode baixar a versão mais atual do driver.
+Quando fiz essa instalação eu baixei o arquivo `postgresql-42.2.20.jar`, mas aconselho a baixar a
+versão mais atual.
 
 Com o driver baixado é hora de ir para o servidor do Fluig e começar a configurar tudo.
 
@@ -75,11 +77,13 @@ qual é o driver utilizado e onde está o módulo do driver JDBC.
 
 Com o arquivo aberto em um editor procure a tag `<datasources>`, que estará dentro de `<subsystem xmlns="urn:jboss:domain:datasources:5.0">`.
 
-A tag `<datasources>` possuí uma coleção de `<datasource>`, que é a configuração de acesso a um banco de dados.
+A tag `<datasources>` possuí uma coleção de `<datasource>`, que é a configuração de acesso a um banco de dados, e
+uma coleção de `<drivers>`, que é a indicação do módulo e driver utilizado para as conexões.
+
 Repare que lá já temos as configurações de acesso ao banco de dados do próprio Fluig. Por algum motivo o Fluig possuí
 3 configurações ao banco de dados.
 
-Então vamos criar uma configuração para indicar o acesso ao Postgresql adicionando mais um `<datasource>`:
+Então vamos criar uma configuração para indicar o acesso ao Postgresql adicionando mais um `<datasource>` (pode ser antes da tag `<drivers>`):
 
 ```xml
 <datasource
@@ -113,14 +117,21 @@ Então vamos criar uma configuração para indicar o acesso ao Postgresql adicio
 </datasource>
 ```
 
-No código acima, nos atributos **jndi-name** e **pool-name**, colocamos o valor `PostgreSqlDS`.
-Esse valor seria o "nome" da sua conexão. Então se for um banco de um sistema específico sugiro que
-dê um nome apropriado para não ficar muito genérico.
+Devemos prestar atençao em alguns pontos específicos do XML acima.
 
-Agora precisamos criar a referência ao driver utilizado na conexão.
+Na tag `<datasource>` temos os atributos **jndi-name** e **pool-name**. O **jndi-name** basicamente indica
+o nome do seu datasource e é ele que usaremos no momento de indicar o banco de dados no qual conectaremos.
+O Fluig padroniza colocar *DS* como sufixo no nome dos datasource (abreviação de **D**ata**S**ource).
 
-Logo abaixo do último `<datasource>` temos a tag `<drivers>`, que é uma coleção de `<driver>`. Então
-vamos adicionar a indicação do driver do Postgresql.
+Por indicarem o "nome" da conexão eu recomendo colocar um nome mais indicativo do que é a conexão. Por
+exemplo, eu acesso o banco de um sistema chamado DocFlow, então nomeei como docflowDS.
+
+Dentro de `<datasource>` temos a tag `<driver>`. Ela indica o nome do driver de conexão que usaremos.
+Esse nome deve ser igual ao utilizado na coleção `<drivers>` que tem no final de `<datasources>`.
+E é justamente agora que vamos criar uma entrada de driver nessa coleção, colocando **postgresqlDriver**
+no atributo **name**, idêntico ao informado no `<datasource>`.
+
+Então vamos adicionar a indicação do driver do Postgresql inserindo no final de `<drivers>`:
 
 ```xml
 <driver name="postgresqlDriver" module="org.postgresql">
@@ -128,7 +139,7 @@ vamos adicionar a indicação do driver do Postgresql.
 </driver>
 ```
 
-E, finalmente, vamos indicar qual é o módulo utilizado.
+E, finalmente, vamos adicionar o módulo do Postgresql como um módulo global.
 
 Procure a tag `<subsystem xmlns="urn:jboss:domain:ee:4.0">` e no final dela insira esse código para criar um global-modules:
 
@@ -148,22 +159,54 @@ precisará simplesmente criar um `<datasource>` usando como modelo a configuraç
 Simplesmente copie cole o `<datasource jta="true" jndi-name="java:/jdbc/FluigDS"` e altere o endereço
 do servidor, nome do banco de dados, usuário e senha.
 
+## Configurando uma conexão para um SGBD homologado
+
+Caso você precise conectar em um banco de dados diferente do utilizado pelo Fluig, mas que seja um MySQL, SQL Server ou Oracle,
+os 3 bancos homologados pelo Fluig, provavelmente não precisará da etapa de download do driver JDBC e da configuração
+do módulo.
+
+Não testei na prática (tá aí um ToDo pra mim), mas em teoria basta criar um `<datasource>` copiando o exemplo do Postgresql,
+mas na tag `<driver>` do `<datasource>` indicar o driver do SGBD utilizado.
+
+A seguir as tags `<driver>` de cada SGBD homologado para que você possa adicionar em `<drivers>`:
+
+```xml
+<!-- SQL Server -->
+<driver name="sqlserverDriver" module="com.microsoft.sqlserver">
+    <driver-class>com.microsoft.sqlserver.jdbc.SQLServerDriver</driver-class>
+</driver>
+
+<!-- MySQL -->
+<driver name="mysqlDriver" module="com.mysql">
+    <driver-class>com.mysql.cj.jdbc.Driver</driver-class>
+</driver>
+
+<!-- Oracle -->
+<driver name="oracleDriver" module="com.oracle.jdbc">
+    <driver-class>oracle.jdbc.driver.OracleDriver</driver-class>
+</driver>
+```
+
 ## Fazendo uma consulta ao banco de dados
 
 Exemplo de utilização no DataSet:
 
 ```javascript
+var myQuery = "SELECT * FROM minha_tabela";
+
+
 try {
-  var dataSource = "/jdbc/PostgreSqlDS";
+  var dataSource = "/jdbc/PostgreSqlDS"; // é o jndi-name sem o java:
   var ic = new javax.naming.InitialContext();
   var ds = ic.lookup(dataSource);
   var conn = ds.getConnection();
   var stmt = conn.createStatement();
   var rs = stmt.executeQuery(myQuery);
-  var rsMeta = rs.getMetaData();
+
+  var rsMeta = rs.getMetaData(); // o metadado é só pra preencher as colunas
   var columnCount = rsMeta.getColumnCount();
 
-  var i = 0;
+  var i;
 
   // Preenchendo automaticamente o nome das colunas do dataset
   for (i = 1; i <= columnCount; ++i) {
@@ -182,6 +225,8 @@ try {
 } catch (e) {
     log.error("ERRO==============> " + e.message);
 } finally {
+    // Importante sempre fechar os recursos abertos
+
     if (rs != null) {
       rs.close();
     }
@@ -206,5 +251,3 @@ O Fluig também oferece uma maneira de armazenar as senhas criptografadas no *do
 
 Para aprender como configurar a criptografia das senha siga a documentação oficial:
 [Encriptação de senha do banco de dados](https://tdn.totvs.com/pages/releaseview.action?pageId=454434362)
-
-E não se esqueça de efetuar essas configurações primeiramente em um ambiente de testes.

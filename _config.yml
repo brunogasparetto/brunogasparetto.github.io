@@ -19,6 +19,8 @@ linkedin: brunogasparetto
 instagram: brunoguntz
 youtube: brunogasparetto
 
+disqus-username: https-brunogasparetto-github-io
+
 # Build settings
 kramdown:
   syntax_highlighter: rouge

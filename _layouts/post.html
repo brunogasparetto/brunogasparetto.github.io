@@ -56,6 +56,12 @@ layout: default
       </span>
     </section>
 
+    {% if jekyll.environment == 'production' %}
+    <section>
+      {% include disqus.html %}
+    </section>
+    {% endif %}
+
     <section>
       {% include footer.html %}
     </section>

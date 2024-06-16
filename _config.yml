@@ -38,6 +38,7 @@ plugins:
   - jekyll-feed
   - jekyll-sitemap
   - jekyll-minifier
+  - jekyll-paginate-v2
 
 toc:
   min_level: 2
@@ -79,3 +80,13 @@ exclude:
 
 include:
   - _pages
+
+pagination:
+  enabled: true
+  sort_reverse: true
+  per_page: 10
+  permalink: '/page/:num/'
+  title: ':title - Página :num'
+  trail:
+    before: 2
+    after: 2

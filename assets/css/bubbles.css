@@ -7,7 +7,7 @@
 }
 
 .bubble-tip::before {
-  content: "Tip";
+  content: "Dica";
   font-weight: bold;
   display: block;
   margin-bottom: 1rem;
@@ -24,7 +24,7 @@
 }
 
 .bubble-note::before {
-  content: "Note";
+  content: "Nota";
   font-weight: bold;
   font-weight: bold;
   display: block;
@@ -42,7 +42,7 @@
 }
 
 .bubble-warning::before {
-  content: "Warning";
+  content: "Atenção";
   font-weight: bold;
   display: block;
   margin-bottom: 1rem;

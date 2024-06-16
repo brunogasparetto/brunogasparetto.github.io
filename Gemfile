@@ -19,6 +19,7 @@ group :jekyll_plugins do
   gem "jekyll-toc"
   gem "jekyll-sitemap"
   gem "jekyll-minifier"
+  gem "jekyll-paginate-v2", "~> 3.0"
 end
 
 # Windows and JRuby does not include zoneinfo files, so bundle the tzinfo-data gem
@@ -38,3 +39,5 @@ gem "http_parser.rb", "~> 0.6.0", :platforms => [:jruby]
 gem "rouge"
 
 gem "webrick", "~> 1.8"
+
+gem "jekyll-paginate-v2", "~> 3.0"

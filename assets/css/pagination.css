@@ -1,0 +1,29 @@
+.page-list {
+  width: calc(100vw - 350px);
+  float: right;
+  margin-top: 1rem;
+}
+
+.page-navigation {
+  width: 85%;
+  margin: 1rem auto 1rem;
+  display: flex;
+  justify-content: center;
+}
+
+.page-navigation a {
+  width: 35px;
+  text-align: center;
+  margin: 0 0.2rem;
+  padding: 1rem;
+  border-radius: 5px;
+  transition: all 0.5s;
+  color: var(--details-color-blue);
+  gap: 1rem;
+  text-decoration: none;
+}
+
+.page-navigation a:hover, .page-navigation a.selected {
+  background-color: var(--details-color-blue);
+  color: var(--text-color-light);
+}

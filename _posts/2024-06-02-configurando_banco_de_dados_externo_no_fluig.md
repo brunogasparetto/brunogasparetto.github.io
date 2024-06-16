@@ -20,13 +20,13 @@ afinal é mais rápido executar um SELECT no banco dados.
 Então para ajudar nessa etapa de configurar o banco de dados externo vou mostrar como fiz quando
 precisei acessar um Postgresql no nosso Fluig on premise.
 
-### Importante
-
 Para efetuar as configurações a seguir é necessário ter acesso ao servidor do Fluig, pois vamos colocar
 arquivos na sua pasta de instalação e alterar alguns arquivos de configuração.
+{: .bubble-note}
 
-E **é altamente recomendado** primeiro fazer as configurações em um ambiente de testes para evitar
+**É altamente recomendado** primeiro fazer as configurações em um ambiente de testes para evitar
 surpresas desagradáveis.
+{: .bubble-warning}
 
 ## Baixando o driver JDBC
 

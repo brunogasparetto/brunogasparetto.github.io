@@ -5,7 +5,7 @@
   {% assign tags = page.tags %}
   {% endif %}
   {% for tag in tags %}
-  <a href="{{'tags' | absolute_url}}#{{tag |slugify}}">{{tag}}</a>
+  <a href="{{'tag/' | absolute_url}}{{tag |slugify}}">{{tag}}</a>
   {% unless forloop.last %}&nbsp;{% endunless %}
   {% endfor %}
 </span>

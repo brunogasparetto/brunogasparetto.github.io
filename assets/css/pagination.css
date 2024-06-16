@@ -27,3 +27,9 @@
   background-color: var(--details-color-blue);
   color: var(--text-color-light);
 }
+
+.post-list .page-title {
+  width: 85%;
+  margin: 0 auto 1rem;
+  padding: 1rem 2rem;
+}

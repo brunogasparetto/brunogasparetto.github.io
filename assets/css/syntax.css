@@ -370,3 +370,33 @@ code {
   color: #e1e1e6;
   background-color: transparent;
 }
+
+table.rouge-table {
+  width: 100%;
+  border: none;
+  border-collapse: unset;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+table.rouge-table th, table.rouge-table td {
+  border: none;
+}
+
+td.rouge-gutter.gl {
+  text-align: right;
+  width: 40px;
+  padding: 0;
+  margin: 0;
+  border: none;
+  border-right: 1px dashed var(--bs-gray-600);
+}
+
+td.rouge-gutter.gl pre.lineno {
+  padding: 0 .2rem 0 0;
+  color: var(--bs-gray-500);
+}
+
+td.rouge-code pre {
+  padding: 0 0 0 .4rem;
+}

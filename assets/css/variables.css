@@ -11,4 +11,18 @@
   --bubble-note: #588ef2;
   --bubble-warning: #d9534f;
   --bs-body-bg: #f7f7f4;
+  --links-color: #00346b;
+  --links-color-hover: #030518;
+}
+
+[data-bs-theme=dark] {
+  --bs-body-bg: #212529;
+  --primary-color: #030518;
+  --secondary-color: #0095e3;
+  --text-color-light: #d9d9d9;
+  --details-color-blue: #489ffb;
+  --details-color-red: #ff5252;
+  --details-color-gray: #0c0c0c50;
+  --links-color: #2783e3;
+  --links-color-hover: #6eaef3;
 }

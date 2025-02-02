@@ -38,7 +38,6 @@ gem "http_parser.rb", "~> 0.6.0", :platforms => [:jruby]
 
 gem "rouge"
 gem "webrick", "~> 1.8"
-gem "jekyll-paginate-v2", "~> 3.0"
 gem "logger"
 gem "csv"
 gem "base64"

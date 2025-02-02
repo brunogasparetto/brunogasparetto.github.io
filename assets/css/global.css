@@ -127,3 +127,10 @@ img {
   opacity: 1;
   transform: translateY(0);
 }
+
+#theme-button {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  color: #FFF;
+}

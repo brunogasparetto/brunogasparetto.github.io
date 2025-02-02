@@ -27,7 +27,7 @@
     width: 100%;
     background-color: var(--primary-color);
     border-bottom: 1px solid var(--details-color-gray);
-    box-shadow: 1px 1px 5px;
+    box-shadow: 1px 1px 5px #000;
     transition: all 0.5s ease;
     z-index: 3;
   }
@@ -61,6 +61,10 @@
   .post-panel,
   .page-panel {
     display: none;
+  }
+  
+  #theme-button {
+    top: 55px;
   }
 }
 

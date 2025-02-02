@@ -10,7 +10,7 @@
 }
 
 #search-container .search-input {
-  border: 1px solid var(--details-color-blue);
+  border: 1px solid var(--details-color-gray);
   padding: 1rem;
   border-radius: 10px;
   width: 100%;
@@ -24,6 +24,7 @@
   font-family: inherit;
   letter-spacing: 1px;
   border: none;
+  margin-right: 0.5rem;
 }
 
 #search-container input:focus {

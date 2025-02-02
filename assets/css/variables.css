@@ -13,6 +13,7 @@
   --bs-body-bg: #f7f7f4;
   --links-color: #00346b;
   --links-color-hover: #030518;
+  --social-links-color: #030518;
 }
 
 [data-bs-theme=dark] {
@@ -25,4 +26,5 @@
   --details-color-gray: #0c0c0c50;
   --links-color: #2783e3;
   --links-color-hover: #6eaef3;
+  --social-links-color: #2783e3;
 }

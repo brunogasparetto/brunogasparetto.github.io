@@ -11,7 +11,7 @@
 
 .post-list .card-post h2 {
   font-size: 2.5rem;
-  color: var(--details-color-blue);
+  color: var(--links-color);
 }
 
 .card-post {
@@ -32,4 +32,8 @@
   display: flex;
   flex-wrap: wrap;
   gap: 1rem;
+}
+
+.card-post-meta .text-secondary {
+  color: var(--bs-secondary-color) !important;
 }

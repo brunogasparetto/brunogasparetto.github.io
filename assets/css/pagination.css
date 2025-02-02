@@ -18,7 +18,7 @@
   padding: 1rem;
   border-radius: 5px;
   transition: all 0.5s;
-  color: var(--details-color-blue);
+  color: var(--links-color);
   gap: 1rem;
   text-decoration: none;
 }

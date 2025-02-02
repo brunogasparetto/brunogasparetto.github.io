@@ -126,7 +126,7 @@
 .post-panel .toc a,
 .post-panel .last-posts a,
 .page-panel .last-posts a {
-  color: var(--primary-color);
+  color: var(--links-color);
   transition: color 0.5s ease;
   text-decoration: none;
 }
@@ -134,14 +134,14 @@
 .post-panel .toc a:hover,
 .post-panel .last-posts a:hover,
 .page-panel .last-posts a:hover {
-  color: var(--details-color-blue);
+  color: var(--links-color-hover);
 }
 
 .categories-item h4 a,
 .tags-item h4 a,
 .post-categories a,
 .post-tags a {
-  color: var(--details-color-blue);
+  color: var(--links-color);
   text-decoration: none;
 }
 
@@ -199,7 +199,7 @@
   padding: 1rem;
   border-radius: 5px;
   transition: all 0.5s;
-  color: var(--details-color-blue);
+  color: var(--links-color);
   display: flex;
   align-items: center;
   gap: 1rem;
@@ -216,6 +216,6 @@
 }
 
 .footer .post-navigation a:hover {
-  background-color: var(--details-color-blue);
-  color: var(--text-color-light);
+  color: var(--links-color-hover);
+  background-color: var(--details-color-gray);
 }

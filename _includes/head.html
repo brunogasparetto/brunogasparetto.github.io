@@ -14,6 +14,52 @@
 
   <link rel="canonical" href="{% if page.url == '/' %}{{site.url}}{{site.baseurl}}{% else %}{{page.url | absolute_url}}{% endif %}">
 
+  <script>
+    let currentTheme = "";
+
+    function loadTheme() {
+      let theme = localStorage.getItem("theme");
+
+      if (theme === null) {
+        theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+        localStorage.setItem("theme", theme);
+      }
+      document.querySelector("html").setAttribute("data-bs-theme", theme);
+      currentTheme = theme;
+    }
+
+    loadTheme();
+
+    function setThemeButtonIcon() {
+      const className = currentTheme === "light"
+        ? "fa-solid fa-moon"
+        : "fa-solid fa-sun"
+        ;
+      document.querySelector("#theme-button i").className = className;
+    }
+
+    function setTheme(theme) {
+      localStorage.setItem("theme", theme);
+      document.querySelector("html").setAttribute("data-bs-theme", theme);
+      currentTheme = theme;
+      setThemeButtonIcon();
+    }
+
+    document.addEventListener("DOMContentLoaded", function () {
+      setThemeButtonIcon();
+
+      document.getElementById("theme-button").addEventListener("click", function () {
+        const newTheme = document.querySelector("#theme-button i").classList.contains("fa-sun")
+          ? "light"
+          : "dark"
+        ;
+        setTheme(newTheme);
+      });
+    });
+
+
+  </script>
+
   {% include seo-tags.html %}
 
   {% feed_meta %}

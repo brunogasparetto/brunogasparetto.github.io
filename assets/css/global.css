@@ -110,7 +110,7 @@ img {
 }
 
 .back-to-top {
-  color: var(--details-color-blue);
+  color: var(--links-color);
   position: fixed;
   right: 3.5rem;
   bottom: 5rem;
@@ -126,4 +126,11 @@ img {
   visibility: visible;
   opacity: 1;
   transform: translateY(0);
+}
+
+#theme-button {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  color: #FFF;
 }

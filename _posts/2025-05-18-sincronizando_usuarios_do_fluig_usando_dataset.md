@@ -554,7 +554,7 @@ function getRmWsConsultaSqlService() {
 /**
  * Retorna o usuário do RM WebService
  *
- * @returns {{username: string, password: string}} Objeto com as propriedades username e password
+ * @returns {% raw %}{{username: string, password: string}}{% endraw %}
  */
 function getRmWebserviceUser() {
     var ds = DatasetFactory.getDataset(
@@ -633,7 +633,7 @@ function getErrorMailRecipients() {
 /**
  * Remove a sujeira da mensagem de erro da exceção
  *
- * @param {{message: string}} error Exceção
+ * @param {% raw %}{{message: string}} error Exceção{% endraw %}
  * @returns {string}
  */
 function sanitizeMessageError(error) {

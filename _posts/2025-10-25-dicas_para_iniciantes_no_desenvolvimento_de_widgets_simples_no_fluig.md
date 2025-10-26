@@ -3,7 +3,7 @@ title: Dicas para iniciantes no desenvolvimento de widgets no Fluig
 description: Uma porção de dicas para ajudar a entender as widgets do Fluig.
 date: 2025-10-26 18:00:00 -0400
 image:
-  path: "/assets/img/2025-10-18-plugin_de_anexos_em_formulario_no_processo_do_fluig/cover.jpg"
+  path: "/assets/img/2025-10-26-dicas_para_iniciantes_no_desenvolvimento_de_widgets_simples_no_fluig/cover.jpg"
   alt: "Dicas para Iniciantes em Widgets no Fluig"
   hide: true
 categories: fluig

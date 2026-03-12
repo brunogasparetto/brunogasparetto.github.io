@@ -3,8 +3,8 @@ title: Série Fluig - API Pública com Widgets - Iniciando
 description: Iniciando uma série de vídeos/posts sobre construção de API Pública com Widgets no TOTVS Fluig.
 date: 2026-03-11 21:00:00 -0400
 image:
-  path: "/assets/img/2025-10-26-dicas_para_iniciantes_no_desenvolvimento_de_widgets_simples_no_fluig/cover.jpg"
-  alt: "Dicas para Iniciantes em Widgets no Fluig"
+  path: "/assets/img/2026-03-11-serie_fluig_api_publica_com_widgets_iniciando/cover.jpg"
+  alt: "Fluig - API Pública com Widgets"
   hide: true
 categories: fluig
 tags:
